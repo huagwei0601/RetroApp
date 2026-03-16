@@ -1,0 +1,101 @@
+<h2>Win98 TitleBar Button Reference Match</h2>
+<p class="subtitle">Matching your screenshot — gradient title bar + correct button symbols and sizing</p>
+
+<div class="mockup">
+  <div class="mockup-header">TitleBar — active state</div>
+  <div class="mockup-body" style="background:#C0C0C0; padding:16px; font-family:'MS Sans Serif','Tahoma',sans-serif; font-size:11px;">
+
+    <!-- Accurate Win98 Window -->
+    <div style="border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #404040;border-right:2px solid #404040;background:#C0C0C0;width:360px;">
+
+      <!-- Title Bar: gradient active -->
+      <div style="
+        background: linear-gradient(to right, #000080, #1084d0);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:2px 2px 2px 4px;
+        height:18px;
+        box-sizing:border-box;
+      ">
+        <span style="color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;">
+          <span style="font-size:10px;">🗂</span> My Computer
+        </span>
+
+        <!-- Control Buttons -->
+        <div style="display:flex;gap:2px;align-items:center;">
+          <!-- Minimize -->
+          <button style="
+            width:16px;height:14px;
+            background:#C0C0C0;
+            border-top:2px solid #fff;border-left:2px solid #fff;
+            border-bottom:2px solid #404040;border-right:2px solid #404040;
+            display:flex;align-items:flex-end;justify-content:center;
+            padding:0 0 1px 0;
+            font-size:9px;line-height:1;
+            cursor:default;
+            box-sizing:border-box;
+          ">_</button>
+
+          <!-- Maximize -->
+          <button style="
+            width:16px;height:14px;
+            background:#C0C0C0;
+            border-top:2px solid #fff;border-left:2px solid #fff;
+            border-bottom:2px solid #404040;border-right:2px solid #404040;
+            display:flex;align-items:center;justify-content:center;
+            padding:0;
+            font-size:9px;line-height:1;
+            cursor:default;
+            box-sizing:border-box;
+          ">□</button>
+
+          <!-- Close — 2px gap before, slightly wider feel -->
+          <button style="
+            width:16px;height:14px;
+            background:#C0C0C0;
+            border-top:2px solid #fff;border-left:2px solid #fff;
+            border-bottom:2px solid #404040;border-right:2px solid #404040;
+            display:flex;align-items:center;justify-content:center;
+            padding:0;
+            font-size:9px;font-weight:700;line-height:1;
+            cursor:default;
+            box-sizing:border-box;
+            margin-left:2px;
+          ">X</button>
+        </div>
+      </div>
+
+      <!-- Window body placeholder -->
+      <div style="padding:8px;color:#000;font-size:11px;min-height:40px;">Window content</div>
+    </div>
+
+    <div style="margin-top:20px;"></div>
+
+    <!-- Inactive title bar for comparison -->
+    <div style="border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #404040;border-right:2px solid #404040;background:#C0C0C0;width:360px;">
+      <div style="
+        background: linear-gradient(to right, #808080, #b0b0b0);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:2px 2px 2px 4px;
+        height:18px;
+        box-sizing:border-box;
+      ">
+        <span style="color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;">
+          <span style="font-size:10px;">🗂</span> My Computer (inactive)
+        </span>
+        <div style="display:flex;gap:2px;align-items:center;">
+          <button style="width:16px;height:14px;background:#C0C0C0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #404040;border-right:2px solid #404040;display:flex;align-items:flex-end;justify-content:center;padding:0 0 1px 0;font-size:9px;cursor:default;box-sizing:border-box;">_</button>
+          <button style="width:16px;height:14px;background:#C0C0C0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #404040;border-right:2px solid #404040;display:flex;align-items:center;justify-content:center;font-size:9px;cursor:default;box-sizing:border-box;">□</button>
+          <button style="width:16px;height:14px;background:#C0C0C0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #404040;border-right:2px solid #404040;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;cursor:default;box-sizing:border-box;margin-left:2px;">X</button>
+        </div>
+      </div>
+      <div style="padding:8px;color:#000;font-size:11px;min-height:40px;">Window content</div>
+    </div>
+
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:12px;">Active: gradient #000080 → #1084d0 · Inactive: #808080 → #b0b0b0 · Buttons: 16×14px raised · Close has 2px gap + bold X</p>
