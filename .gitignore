@@ -40,3 +40,6 @@ next-env.d.ts
 .superpowers/brainstorm/**/.server-info
 .superpowers/brainstorm/**/.server.log
 .superpowers/brainstorm/**/.server.pid
+.playwright-mcp/
+CLAUDE.md
+/apps/

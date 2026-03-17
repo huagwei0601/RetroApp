@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surfaces */
+  --win98-desktop:                        #008080;
+  --win98-silver:                         #C0C0C0;
+
+  /* Borders */
+  --win98-light:                          #FFFFFF;
+  --win98-dark:                           #808080;
+  --win98-darker:                         #404040;
+
+  /* Title bars */
+  --win98-titlebar:                       #000080;
+  --win98-titlebar-inactive:              #808080;
+  --win98-titletext:                      #FFFFFF;
+  --win98-titlebar-gradient-end:          #1084d0;
+  --win98-titlebar-inactive-gradient-end: #b0b0b0;
+
+  /* Text */
+  --win98-text:                           #000000;
+  --win98-disabled:                       #808080;
+
+  /* Selection */
+  --win98-highlight:                      #000080;
+  --win98-highlight-text:                 #FFFFFF;
+}
+
+.win98-raised {
+  border-top:    2px solid var(--win98-light);
+  border-left:   2px solid var(--win98-light);
+  border-bottom: 2px solid var(--win98-darker);
+  border-right:  2px solid var(--win98-darker);
+}
+
+.win98-sunken {
+  border-top:    2px solid var(--win98-darker);
+  border-left:   2px solid var(--win98-darker);
+  border-bottom: 2px solid var(--win98-light);
+  border-right:  2px solid var(--win98-light);
+}
+
+.win98-flat {
+  border: 1px solid var(--win98-dark);
+}
+
+/* Win98 scrollbar track — 2×2 checkerboard of silver (#C0C0C0) and white */
+.win98-scrollbar-track {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect width='1' height='1' fill='%23C0C0C0'/%3E%3Crect x='1' width='1' height='1' fill='%23FFFFFF'/%3E%3Crect y='1' width='1' height='1' fill='%23FFFFFF'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23C0C0C0'/%3E%3C/svg%3E");
+}
+
+/* Etched horizontal divider — each element carries dark-bottom + light-top so adjacent elements produce dark-over-light groove */
+.win98-divider {
+  border-top:    1px solid var(--win98-darker);
+  border-bottom: 1px solid var(--win98-light);
+}
+
+.win98-window {
+  /* Classic Win98 frame: 1px dark outer + 2px raised bevel */
+  border-top:    2px solid var(--win98-light);
+  border-left:   2px solid var(--win98-light);
+  border-bottom: 2px solid var(--win98-darker);
+  border-right:  2px solid var(--win98-darker);
+  outline:       1px solid var(--win98-darker);
+  background:    var(--win98-silver);
+}
+
+/* Reset browser button defaults */
+.win98-btn-reset {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  cursor: default;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.search-input::placeholder {
+  color: var(--win98-dark);
+}

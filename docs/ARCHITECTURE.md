@@ -2,7 +2,7 @@
 
 ## Overview
 
-Win98 UI Museum is a client-side Next.js 14 app. No backend except for the Anthropic API call in "Any App" mode. All state lives in React. No database, no auth, no persistence.
+Win98 UI Museum is a client-side Next.js 14 app. All state lives in React. No database, no auth, no persistence.
 
 ---
 
@@ -12,7 +12,7 @@ Win98 UI Museum is a client-side Next.js 14 app. No backend except for the Anthr
 app/page.tsx  →  <Desktop />
 ```
 
-One page. The Desktop component manages all window state, positions, z-index, and per-app configs.
+One page. The Desktop component manages all window state, positions, and z-index.
 
 ---
 
@@ -31,18 +31,8 @@ type WindowState = {
 
 type DesktopState = {
   openWindows: WindowState[]
-  configs: Record<AppId, AppConfig>
 }
 ```
-
-### Config flow
-```
-User interacts with ConfiguratorPanel
-  → updates configs[appId] in Desktop state
-  → App Window re-renders with new config
-```
-
-No prop drilling beyond two levels. Use React Context if needed.
 
 ---
 
@@ -51,13 +41,9 @@ No prop drilling beyond two levels. Use React Context if needed.
 ```
 <Desktop>
   ├── <DesktopIcon> × N
-  ├── <Window> × N  (App Window)
+  ├── <Window> × N  (one per open app)
   │   ├── <TitleBar>
-  │   ├── [App Component]  e.g. <SpotifyApp config={...} />
-  │   └── <StatusBar>
-  ├── <Window>  (Configurator Panel)
-  │   ├── <TitleBar>
-  │   ├── <ConfiguratorPanel appId config onChange />
+  │   ├── [App Component]  e.g. <InstagramApp />
   │   └── <StatusBar>
   └── <Taskbar>
       ├── <StartMenu>
@@ -69,29 +55,12 @@ No prop drilling beyond two levels. Use React Context if needed.
 
 ## App Component Interface
 
-All apps follow the same interface:
+Each app is a self-contained component with no external props beyond what it needs for its own internal state. Apps manage their own view switching (e.g., feed → profile → story).
 
 ```typescript
-type AppProps = {
-  config: AppConfig
-}
-
-export function SpotifyApp({ config }: AppProps) { ... }
+export function InstagramApp() { ... }
+export function SpotifyApp() { ... }
 ```
-
-Apps are read-only with respect to config — they render based on it, never modify it.
-
----
-
-## Any App Mode (AI-generated)
-
-1. User opens "Install New App" wizard, types an app name
-2. Client calls `/api/generate-app` (Next.js route handler)
-3. Route handler calls Anthropic API — system prompt describes available Win98 components, requests a React component
-4. Streamed response renders in app window
-5. Generated app shows "AI Generated" badge in title bar
-
-System prompt lives in `lib/generateApp.ts`.
 
 ---
 
@@ -101,16 +70,9 @@ System prompt lives in `lib/generateApp.ts`.
 Desktop Icon double-click
     │
     ▼
-Desktop opens WindowState for app + configurator
+Desktop opens WindowState for app
     │
-    ├──▶ App Window  →  <[App]App config={config} />
-    └──▶ Configurator Window  →  <ConfiguratorPanel />
-                                        │ onChange(newConfig)
-                                        ▼
-                               Desktop updates configs[appId]
-                                        │
-                                        ▼
-                               App Window re-renders
+    └──▶ App Window  →  <[App]App />
 ```
 
 ---
@@ -122,9 +84,6 @@ Desktop opens WindowState for app + configurator
 | `app/page.tsx` | Entry point, renders Desktop |
 | `components/desktop/Desktop.tsx` | Main state container |
 | `components/win98/` | Win98 UI primitives |
-| `components/configurator/ConfiguratorPanel.tsx` | Config UI |
-| `components/apps/[app]/index.tsx` | Each app root component |
-| `lib/types.ts` | AppConfig, AppId, WindowState types |
-| `lib/config.ts` | Per-app config dimension definitions |
+| `components/apps/[app]/index.ts` | Each app barrel export |
+| `lib/types.ts` | AppId, WindowState types |
 | `lib/mockData/[app].ts` | Static mock data |
-| `app/api/generate-app/route.ts` | Any App mode API route |

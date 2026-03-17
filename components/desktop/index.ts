@@ -1,0 +1,5 @@
+export { Desktop } from './Desktop'
+export { DesktopIcon } from './DesktopIcon'
+export { Taskbar } from './Taskbar'
+export { TaskbarButton } from './TaskbarButton'
+export { StartMenu } from './StartMenu'
